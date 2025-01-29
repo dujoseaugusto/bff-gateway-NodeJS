@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  bff-gateway:
+    container_name: bff-gateway-nodejs
+    build: .
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    environment:
+      - NODE_ENV=production
+      - DEEPSEEK_API_URL=${DEEPSEEK_API_URL}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+    volumes:
+      - .:/usr/src/app
+    restart: unless-stopped
